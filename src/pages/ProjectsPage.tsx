@@ -1,3 +1,4 @@
+import { sitePath } from '../paths'
 import { useEffect, useState } from 'react'
 import { ProjectRow } from '../components/ProjectRow'
 import { ProjectPreview } from '../components/ProjectPreview'
@@ -34,7 +35,7 @@ export function ProjectsPage() {
       <main className="works-container home-main" aria-labelledby="portfolio-title">
         <div className="works-content">
           <div className="home-brand">
-            <img className="brand-mark" src="/images/brand/hk.svg" alt="" width="128" height="96" />
+            <img className="brand-mark" src={sitePath("/images/brand/hk.svg")} alt="" width="128" height="96" />
             <div className="brand-copy">
               <p className="brand-role">{site.role}</p>
               <h1 id="portfolio-title" className="home-title">

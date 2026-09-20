@@ -1,3 +1,4 @@
+import { sitePath } from '../paths'
 import { useRef } from 'react'
 import { projects } from '../data/projects'
 import { site } from '../data/site'
@@ -18,8 +19,8 @@ export function SiteMenu() {
         <div className="menu-content">
           <p id="menu-title">{site.title}</p>
           <nav aria-label="Main navigation">
-            <a className="menu-home" href="/">Home</a>
-            {projects.map((project) => <a key={project.id} className="menu-works" href={project.projectUrl}><span>{project.number}</span>{project.title}</a>)}
+            <a className="menu-home" href={sitePath()}>Home</a>
+            {projects.map((project) => <a key={project.id} className="menu-works" href={sitePath(project.projectUrl)}><span>{project.number}</span>{project.title}</a>)}
           </nav>
           <p>Profile, development, writing & books.</p>
         </div>

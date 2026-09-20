@@ -37,7 +37,9 @@ GitHub Actionsでもビルドとブラウザテストを実行します。
 | `/daily-notes` | 記事や投稿などの発信活動 |
 | `/books` | 読んだ本、おすすめの本 |
 
-作品・発信・本のデータは現在未登録です。Hono API・DB・管理画面は未実装で、コンテンツは静的データから表示します。
+Daily Notesにはポートフォリオ作成の記録、Developmentには作品、Booksには技術書8冊を掲載しています。Booksは言語・技術、分野、読書状況で絞り込めます。書籍の版・読了日・感想は確認できたものだけ追記します。Hono API・DB・管理画面は未実装で、コンテンツは静的データから表示します。
+
+GitHub PagesではSettings → Pages → SourceをGitHub Actionsに設定します。mainへのpushで `npm run build:pages` が実行され、`dist` を公開します。公開URLは https://h-kurashina.github.io/portfolio/ です。各ページのHTMLも生成するため、直接アクセス・再読み込みに対応しています。通常の `npm run dev` は引き続きlocalhostのルートで動作します。
 
 ## 自分用に変更する
 

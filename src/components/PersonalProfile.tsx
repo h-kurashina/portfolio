@@ -1,3 +1,4 @@
+import { sitePath } from '../paths'
 import { biography } from '../data/content'
 import { site } from '../data/site'
 import { TechnologyList } from './TechnologyList'
@@ -6,7 +7,7 @@ export function PersonalProfile() {
   return (
     <div className="personal-profile" lang="ja">
       <section className="profile-summary" aria-labelledby="profile-name">
-        <img className="profile-photo" src={biography.photo.src} alt={biography.photo.alt} width={biography.photo.width} height={biography.photo.height} decoding="async" />
+        <img className="profile-photo" src={sitePath(biography.photo.src)} alt={biography.photo.alt} width={biography.photo.width} height={biography.photo.height} decoding="async" />
         <div className="profile-overview">
           <p className="profile-role">{biography.role}</p>
           <h2 id="profile-name" className="profile-name">{site.name}</h2>
@@ -53,7 +54,7 @@ export function PersonalProfile() {
         <div className="profile-section-heading"><h2 id="contact-title">Contact</h2><p>連絡先・リンク</p></div>
         <div className="profile-contact">
           <a href={`mailto:${biography.email}`}><span>Email</span><span>{biography.email} <span aria-hidden="true">↗</span></span></a>
-          {biography.githubUrl && <a href={biography.githubUrl} target="_blank" rel="noreferrer"><span className="contact-platform"><img src="/images/technologies/github.svg" alt="" width="18" height="18" />GitHub</span><span>{biography.githubUrl.replace('https://github.com/', '@')} <span aria-hidden="true">↗</span></span></a>}
+          {biography.githubUrl && <a href={biography.githubUrl} target="_blank" rel="noreferrer"><span className="contact-platform"><img src={sitePath("/images/technologies/github.svg")} alt="" width="18" height="18" />GitHub</span><span>{biography.githubUrl.replace('https://github.com/', '@')} <span aria-hidden="true">↗</span></span></a>}
         </div>
       </section>
     </div>
