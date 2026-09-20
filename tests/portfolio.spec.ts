@@ -81,3 +81,18 @@ test('mobile layout and reduced motion remain usable', async ({ page }) => {
   await page.getByRole('link', { name: '04 Books' }).click()
   await expect(page.getByRole('heading', { name: 'Books', exact: true })).toBeVisible()
 })
+
+test('books combine subject and reading filters and reset correctly', async ({ page }) => {
+  await page.goto('/books')
+  await expect(page.locator('.book-card')).toHaveCount(8)
+  await page.getByRole('button', { name: '未読', exact: true }).click()
+  await expect(page.locator('.book-card')).toHaveCount(2)
+  await expect(page.getByRole('heading', { name: 'データ指向アプリケーションデザイン' })).toBeVisible()
+  await page.getByLabel('言語・技術', { exact: true }).selectOption('Rust')
+  await expect(page.locator('.book-card')).toHaveCount(1)
+  await page.getByLabel('分野', { exact: true }).selectOption('分散システム')
+  await expect(page.locator('.book-card')).toHaveCount(0)
+  await page.getByRole('button', { name: '絞り込みを解除' }).click()
+  await expect(page.locator('.book-card')).toHaveCount(8)
+  await page.screenshot({ path: test.info().outputPath('portfolio-books.png'), fullPage: true })
+})

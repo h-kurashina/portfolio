@@ -1,3 +1,4 @@
+import { sitePath } from '../paths'
 import type { Project } from '../types/project'
 
 type ProjectPreviewProps = {
@@ -13,7 +14,7 @@ export function ProjectPreview({ projects, hoveredProject }: ProjectPreviewProps
         <img
           key={project.id}
           className={`project-preview-image${hoveredProject?.id === project.id ? ' is-visible' : ''}`}
-          src={project.imageUrl}
+          src={sitePath(project.imageUrl)}
           alt=""
           width="128"
           height="128"

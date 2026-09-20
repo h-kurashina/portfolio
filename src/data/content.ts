@@ -1,4 +1,5 @@
 export type DevelopmentWork = {
+  imageUrl?: string
   id: string
   title: string
   description: string
@@ -11,8 +12,11 @@ export type Book = {
   id: string
   title: string
   author: string
-  review: string
-  read: boolean
+  review?: string
+  status: 'unread' | 'reading' | 'read' | null
+  languages: string[]
+  fields: string[]
+  nickname?: string
   recommended: boolean
   url?: string
 }
@@ -22,7 +26,9 @@ export type Publication = {
   title: string
   platform: string
   date: string
-  url: string
+  body?: string[]
+  url?: string
+  linkLabel?: string
 }
 
 export type Biography = {
@@ -72,9 +78,43 @@ export const biography: Biography = {
     height: 1477,
   },
 }
-export const developmentWorks: DevelopmentWork[] = []
-export const books: Book[] = []
-export const publications: Publication[] = []
+export const developmentWorks: DevelopmentWork[] = [
+  {
+    id: 'sta',
+    title: 'sta.',
+    description: '科目を選んでから撮る、学生向けのドキュメント整理アプリ。スキャンした資料を科目へ直接保存し、閲覧中も科目をすばやく切り替えられます。SwiftUIとVisionKitで実装し、MITライセンスで公開しています。',
+    languages: ['Swift'],
+    fields: ['iOSアプリ'],
+    imageUrl: '/images/projects/sta-logo.svg',
+    url: 'https://github.com/h-kurashina/sta.',
+  },
+]
+// Editions and reading dates are intentionally omitted until confirmed.
+export const books: Book[] = [
+  { id: 'typescript-blueberry', title: 'プロを目指す人のためのTypeScript入門', author: '鈴木 俊太', nickname: 'ブルーベリー本', languages: ['TypeScript'], fields: ['言語の基礎', '型システム'], status: null, recommended: false, url: 'https://gihyo.jp/book/2022/978-4-297-12747-3' },
+  { id: 'effective-typescript', title: 'Effective TypeScript', author: 'Dan Vanderkam', languages: ['TypeScript'], fields: ['型システム', '実践・設計'], status: null, recommended: false, url: 'https://effectivetypescript.com/' },
+  { id: 'introducing-python', title: '入門 Python 3', author: 'Bill Lubanovic', languages: ['Python'], fields: ['言語の基礎'], status: null, recommended: false },
+  { id: 'effective-python', title: 'Effective Python', author: 'Brett Slatkin', languages: ['Python'], fields: ['実践・設計'], status: null, recommended: false },
+  { id: 'ddia', title: 'データ指向アプリケーションデザイン', author: 'Martin Kleppmann', nickname: 'DDIA / イノシシ本', languages: [], fields: ['分散システム', 'データ設計'], status: 'unread', recommended: false, url: 'https://www.oreilly.co.jp/books/9784873118703/' },
+  { id: 'command-line-rust', title: 'Rustの練習帳', author: 'Ken Youens-Clark', languages: ['Rust'], fields: ['言語の基礎', 'CLI・ツール'], status: 'unread', recommended: false, url: 'https://www.oreilly.co.jp/books/9784814400584/' },
+  { id: 'ruby-cherry', title: 'プロを目指す人のためのRuby入門', author: '伊藤 淳一', nickname: 'チェリー本', languages: ['Ruby'], fields: ['言語の基礎'], status: null, recommended: false, url: 'https://ruby-book.jnito.com/' },
+  { id: 'professional-react', title: 'プロフェッショナルWebプログラミング React', author: '西畑 一馬・長谷川 広武・伊藤 祐策・扇田 心', languages: ['JavaScript', 'React'], fields: ['Webフロントエンド'], status: null, recommended: false, url: 'https://books.mdn.co.jp/books/3224303034/' },
+]
+export const publications: Publication[] = [
+  {
+    id: '2026-09-20-portfolio',
+    title: 'ポートフォリオを作成しました',
+    platform: 'Development log',
+    date: '2026-09-20',
+    body: [
+      'ReactとTypeScriptで、自分のポートフォリオを作成しました。プロフィール、開発した作品、発信活動、読んだ本をまとめる場所にしていきます。',
+      '今日はホームとPersonalページを中心に制作。写真や経歴、使用技術を掲載し、各ページのテーマカラーやアイコン、hover時のアニメーションも整えました。スマートフォンでの表示確認と、Playwrightによるテストも追加しています。',
+      'ソースコードはGitHubでMITライセンスとして公開しました。作品や記事、本の記録は、これから少しずつ追加していく予定です。',
+    ],
+    url: 'https://github.com/h-kurashina/portfolio',
+    linkLabel: 'GitHubでソースコードを見る',
+  },
+]
 export const languages = ['TypeScript', 'JavaScript', 'Python', 'Go', 'Rust']
 export const fields = ['Webアプリ', 'インフラ', 'セキュリティ', 'ツール・自動化']
 
