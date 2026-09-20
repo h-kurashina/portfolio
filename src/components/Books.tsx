@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { books } from '../data/content'
+import { sitePath } from '../paths'
 
 const languages = [...new Set(books.flatMap(book => book.languages))]
 const fields = [...new Set(books.flatMap(book => book.fields))]
@@ -27,6 +28,9 @@ export function Books() {
     </div>
     <p className="result-count" aria-live="polite">{visibleBooks.length} books</p>
     {visibleBooks.length ? <ul className="book-grid">{visibleBooks.map(book => <li className="book-card" key={book.id}>
+      <div className="book-cover-stage">
+        {book.imageUrl ? <img className="book-cover" src={sitePath(book.imageUrl)} alt={`${book.title}の表紙`} width="180" height="240" loading="lazy" /> : <div className="book-cover-placeholder"><span>{book.languages.join(' / ') || 'Architecture'}</span><span>書影準備中</span></div>}
+      </div>
       <div className="book-card-top"><span className="book-language">{book.languages.join(' / ') || 'Architecture'}</span>{book.status && <span className="book-status">{statuses[book.status]}</span>}</div>
       <h2>{book.url ? <a href={book.url}>{book.title}</a> : book.title}</h2>
       {book.nickname && <p className="book-nickname">{book.nickname}</p>}
