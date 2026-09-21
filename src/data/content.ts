@@ -90,6 +90,23 @@ export const developmentWorks: DevelopmentWork[] = [
     url: 'https://beaulab.jp',
   },
   {
+    id: 'tadori',
+    title: 'Tadori',
+    description: '誰かが作った学びの道を、辿る。技術書・ビジネス書を「順番」と「できるようになること」でつなぐ、学習ロードマップのモバイルアプリ。ホームには今読む一冊を表示し、各本のチェックポイントに到達すると次の一冊へ進みます。Expo（React Native）とExpo Routerで開発中のMVPです。',
+    languages: ['TypeScript', 'React Native'],
+    fields: ['モバイルアプリ'],
+    imageUrl: '/images/projects/tadori-icon.svg',
+    url: 'https://github.com/h-kurashina/tadori',
+  },
+  {
+    id: 'wryte',
+    title: 'Wryte',
+    description: '技術知識を、書く・確かめる・整える・公開するための技術執筆・知識共有サービス。フロントエンドはReactとVite、バックエンドはPython（FastAPI）とPostgreSQLで開発しています。',
+    languages: ['TypeScript', 'React', 'Python'],
+    fields: ['Webアプリ'],
+    imageUrl: '/images/projects/wryte-icon.svg',
+  },
+  {
     id: 'sta',
     title: 'sta.',
     description: '科目を選んでから撮る、学生向けのドキュメント整理アプリ。スキャンした資料を科目へ直接保存し、閲覧中も科目をすばやく切り替えられます。SwiftUIとVisionKitで実装し、MITライセンスで公開しています。',
