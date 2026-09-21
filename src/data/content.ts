@@ -81,6 +81,15 @@ export const biography: Biography = {
 }
 export const developmentWorks: DevelopmentWork[] = [
   {
+    id: 'beaulab',
+    title: 'Beaulab',
+    description: '美容クリニックのためのSNSプラットフォーム。口コミや投稿でクリニックを探し、予約やメッセージのやり取りまでできます。エムキャピタル株式会社で事業責任者を務めながら、Web（Next.js）とモバイルアプリ（React Native / Expo）を開発しています。',
+    languages: ['TypeScript', 'React Native'],
+    fields: ['Webアプリ', 'モバイルアプリ'],
+    imageUrl: '/images/projects/beaulab-icon.png',
+    url: 'https://beaulab.jp',
+  },
+  {
     id: 'sta',
     title: 'sta.',
     description: '科目を選んでから撮る、学生向けのドキュメント整理アプリ。スキャンした資料を科目へ直接保存し、閲覧中も科目をすばやく切り替えられます。SwiftUIとVisionKitで実装し、MITライセンスで公開しています。',
