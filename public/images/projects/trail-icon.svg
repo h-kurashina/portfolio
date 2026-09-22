@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88">
+  <title>trail</title>
+  <rect width="88" height="88" fill="#1F2430"/>
+  <path d="M24 20v48" fill="none" stroke="#7A8598" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="24" cy="24" r="5" fill="#F0B35B"/>
+  <circle cx="24" cy="44" r="5" fill="#F0B35B"/>
+  <circle cx="24" cy="64" r="5" fill="none" stroke="#F0B35B" stroke-width="3"/>
+  <rect x="38" y="21" width="30" height="6" rx="3" fill="#E6EAF2"/>
+  <rect x="38" y="41" width="22" height="6" rx="3" fill="#E6EAF2"/>
+  <rect x="38" y="61" width="26" height="6" rx="3" fill="#7A8598"/>
+</svg>
