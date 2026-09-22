@@ -107,6 +107,15 @@ export const developmentWorks: DevelopmentWork[] = [
     imageUrl: '/images/projects/wryte-icon.svg',
   },
   {
+    id: 'trail',
+    title: 'trail',
+    description: 'Gitのworktreeの開発履歴を再構成する、ローカル完結のCLI。コミットだけでなく、作業ツリーの変更やHEADの移動も時系列のチェックポイントとして並べ、「何が変わったか」だけでなく「どう変わったか」を確認できます。最後のpush以降のレビューや、worktree・コミット単位のdiffにも対応しています。Rustで実装し、MITライセンスで公開しています。',
+    languages: ['Rust'],
+    fields: ['ツール・自動化'],
+    imageUrl: '/images/projects/trail-icon.svg',
+    url: 'https://github.com/h-kurashina/trail',
+  },
+  {
     id: 'sta',
     title: 'sta.',
     description: '科目を選んでから撮る、学生向けのドキュメント整理アプリ。スキャンした資料を科目へ直接保存し、閲覧中も科目をすばやく切り替えられます。SwiftUIとVisionKitで実装し、MITライセンスで公開しています。',
