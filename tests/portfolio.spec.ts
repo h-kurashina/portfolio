@@ -52,6 +52,7 @@ test('entrance, hover handoff, fade out, menu and section links', async ({ page 
   await expect(page.getByRole('button', { name: 'おすすめ', exact: true })).toHaveAttribute('aria-pressed', 'true')
   await page.goto('/personal')
   await expect(page.getByRole('link', { name: /GitHub @h-kurashina/ })).toHaveAttribute('href', 'https://github.com/h-kurashina')
+  await expect(page.getByRole('link', { name: /X @hkurashina49/ })).toHaveAttribute('href', 'https://x.com/hkurashina49')
   await expect.poll(() => page.locator('.profile-photo').evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true)
   await expect(page.getByRole('link', { name: /h.kurashina49@gmail.com/ })).toHaveAttribute('href', 'mailto:h.kurashina49@gmail.com')
   await expect(page.getByRole('link', { name: /エムキャピタル株式会社/ })).toHaveAttribute('href', 'https://mhdg-mcapital.co.jp/')

@@ -49,6 +49,7 @@ export type Biography = {
   email: string
   photo: { src: string; alt: string; width: number; height: number }
   githubUrl?: string
+  xUrl?: string
 }
 
 export const biography: Biography = {
@@ -63,6 +64,7 @@ export const biography: Biography = {
     { period: '2025', title: '中央大学 入学', detail: '現在は休学中。' },
     { period: '2026.02', title: 'エムキャピタル株式会社 入社' },
     { period: '2026.04', title: '事業責任者に就任' },
+    { period: '2026.09', title: 'Rust Developer JP 参加', detail: 'プログラミング言語Rustのコミュニティ。' },
   ],
   languages: ['TypeScript', 'Python', 'Go', 'Rust'],
   frameworks: ['React'],
@@ -72,6 +74,7 @@ export const biography: Biography = {
   hobby: 'チェス',
   email: 'h.kurashina49@gmail.com',
   githubUrl: 'https://github.com/h-kurashina',
+  xUrl: 'https://x.com/hkurashina49',
   photo: {
     src: '/images/profile/h-kurashina.jpg',
     alt: 'ライトアップされた水辺でのh.kurashina',
@@ -137,6 +140,30 @@ export const books: Book[] = [
   { id: 'professional-react', imageUrl: '/images/books/professional-react.jpg', title: 'プロフェッショナルWebプログラミング React', author: '西畑 一馬・長谷川 広武・伊藤 祐策・扇田 心', languages: ['JavaScript', 'React'], fields: ['Webフロントエンド'], status: null, recommended: false, url: 'https://books.mdn.co.jp/books/3224303034/' },
 ]
 export const publications: Publication[] = [
+  {
+    id: '2026-09-23-development-works',
+    title: 'Tadori、Wryte、trailを作りました',
+    platform: 'Development log',
+    date: '2026-09-23',
+    body: [
+      'sta.のあとも、いくつか開発を進めています。ポートフォリオのDevelopmentにも追加しました。',
+      'Tadoriは、技術書・ビジネス書を「順番」と「できるようになること」でつなぐ学習ロードマップのモバイルアプリです。Expo（React Native）とExpo Routerで、MVPを開発しています。',
+      'Wryteは、技術知識を書く・確かめる・整える・公開するための技術執筆・知識共有サービスです。フロントエンドはReactとVite、バックエンドはPython（FastAPI）とPostgreSQLで作っています。',
+      'trailは、Gitのworktreeの開発履歴を時系列のチェックポイントとして再構成する、ローカル完結のCLIです。Rustで実装し、MITライセンスでGitHubに公開しました。',
+    ],
+    url: 'https://github.com/h-kurashina/trail',
+    linkLabel: 'GitHubでtrailを見る',
+  },
+  {
+    id: '2026-09-22-rust-developer-jp',
+    title: 'Rust Developer JPに参加することになりました',
+    platform: 'Community',
+    date: '2026-09-22',
+    body: [
+      'プログラミング言語Rustのコミュニティ、Rust Developer JPに参加することになりました。',
+      'RustのOSS活動に関わりたいと考えていたので、その一歩になります。最近はRustでCLIツール「trail」も作ったところなので、コミュニティの中でさらにRustを学んでいきたいです。',
+    ],
+  },
   {
     id: '2026-09-21-sta',
     title: '学生向けドキュメント整理アプリ「sta.」を作りました',

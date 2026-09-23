@@ -55,6 +55,7 @@ export function PersonalProfile() {
         <div className="profile-contact">
           <a href={`mailto:${biography.email}`}><span>Email</span><span>{biography.email} <span aria-hidden="true">↗</span></span></a>
           {biography.githubUrl && <a href={biography.githubUrl} target="_blank" rel="noreferrer"><span className="contact-platform"><img src={sitePath("/images/technologies/github.svg")} alt="" width="18" height="18" />GitHub</span><span>{biography.githubUrl.replace('https://github.com/', '@')} <span aria-hidden="true">↗</span></span></a>}
+          {biography.xUrl && <a href={biography.xUrl} target="_blank" rel="noreferrer"><span className="contact-platform"><img src={sitePath("/images/technologies/x.svg")} alt="" width="18" height="18" />X</span><span>{biography.xUrl.replace('https://x.com/', '@')} <span aria-hidden="true">↗</span></span></a>}
         </div>
       </section>
     </div>
