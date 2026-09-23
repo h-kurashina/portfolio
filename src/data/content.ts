@@ -110,13 +110,22 @@ export const developmentWorks: DevelopmentWork[] = [
     imageUrl: '/images/projects/wryte-icon.svg',
   },
   {
+    id: 'sorted-multiset-rs',
+    title: 'SortedMultiset for Rust',
+    description: '競技プログラミング向けの、重複を許す順序付き集合。tatyam氏のPython版SortedSetと同じ平方分割で実装し、同じ感覚で使えるAPIにしています。標準ライブラリのみ・unsafeなしの1ファイルで、提出コードにそのまま貼り付けて使えます。参照実装との差分テストで検証し、同じ操作列でPython版の約10〜13倍の速さを確認しました。CC0で公開しています。',
+    languages: ['Rust'],
+    fields: ['競技プログラミング', 'ライブラリ'],
+    imageUrl: '/images/projects/sorted-multiset-icon.svg',
+    url: 'https://github.com/h-kurashina/sorted-multiset-rs',
+  },
+  {
     id: 'trail',
     title: 'trail',
     description: 'Gitのworktreeの開発履歴を再構成する、ローカル完結のCLI。コミットだけでなく、作業ツリーの変更やHEADの移動も時系列のチェックポイントとして並べ、「何が変わったか」だけでなく「どう変わったか」を確認できます。最後のpush以降のレビューや、worktree・コミット単位のdiffにも対応しています。Rustで実装し、MITライセンスで公開しています。crates.ioにも「git-trail」として公開しており、cargo install git-trail でインストールできます。',
     languages: ['Rust'],
     fields: ['ツール・自動化'],
     imageUrl: '/images/projects/trail-icon.svg',
-    url: 'https://github.com/h-kurashina/trail',
+    url: 'https://github.com/h-kurashina/git-trail',
   },
   {
     id: 'sta',
@@ -141,6 +150,19 @@ export const books: Book[] = [
 ]
 export const publications: Publication[] = [
   {
+    id: '2026-09-23-sorted-multiset-rs',
+    title: '競プロ向けのRust版SortedMultisetを公開しました',
+    platform: 'Development log',
+    date: '2026-09-23',
+    body: [
+      '競技プログラミングで使える、重複を許す順序付き集合「SortedMultiset」のRust版を作り、GitHubに公開しました。tatyam氏のPython版SortedSetと同じ平方分割のしくみで、insert・remove・k番目の取得・x以上の最小値などを、Python版と同じ感覚で使えます。',
+      '標準ライブラリのみ・unsafeなしの1ファイルで、提出コードに貼り付けて使う前提です。AtCoderのジャッジ環境のrustcでコンパイルできることも確認しました。',
+      '正しさは、ソート済みVecによる参照実装と結果を突き合わせる差分テストで確かめています。ベンチマークでは、同じ操作列でPython版の約10〜13倍の速さでした（手元のApple Silicon環境での計測）。ライセンスはCC0です。',
+    ],
+    url: 'https://github.com/h-kurashina/sorted-multiset-rs',
+    linkLabel: 'GitHubでSortedMultisetを見る',
+  },
+  {
     id: '2026-09-23-git-trail-crates-io',
     title: 'trailをcrates.ioに公開しました',
     platform: 'Development log',
@@ -164,7 +186,7 @@ export const publications: Publication[] = [
       'Wryteは、技術知識を書く・確かめる・整える・公開するための技術執筆・知識共有サービスです。フロントエンドはReactとVite、バックエンドはPython（FastAPI）とPostgreSQLで作っています。',
       'trailは、Gitのworktreeの開発履歴を時系列のチェックポイントとして再構成する、ローカル完結のCLIです。Rustで実装し、MITライセンスでGitHubに公開しました。',
     ],
-    url: 'https://github.com/h-kurashina/trail',
+    url: 'https://github.com/h-kurashina/git-trail',
     linkLabel: 'GitHubでtrailを見る',
   },
   {
