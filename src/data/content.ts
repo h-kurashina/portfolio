@@ -112,7 +112,7 @@ export const developmentWorks: DevelopmentWork[] = [
   {
     id: 'trail',
     title: 'trail',
-    description: 'Gitのworktreeの開発履歴を再構成する、ローカル完結のCLI。コミットだけでなく、作業ツリーの変更やHEADの移動も時系列のチェックポイントとして並べ、「何が変わったか」だけでなく「どう変わったか」を確認できます。最後のpush以降のレビューや、worktree・コミット単位のdiffにも対応しています。Rustで実装し、MITライセンスで公開しています。',
+    description: 'Gitのworktreeの開発履歴を再構成する、ローカル完結のCLI。コミットだけでなく、作業ツリーの変更やHEADの移動も時系列のチェックポイントとして並べ、「何が変わったか」だけでなく「どう変わったか」を確認できます。最後のpush以降のレビューや、worktree・コミット単位のdiffにも対応しています。Rustで実装し、MITライセンスで公開しています。crates.ioにも「git-trail」として公開しており、cargo install git-trail でインストールできます。',
     languages: ['Rust'],
     fields: ['ツール・自動化'],
     imageUrl: '/images/projects/trail-icon.svg',
@@ -140,6 +140,19 @@ export const books: Book[] = [
   { id: 'professional-react', imageUrl: '/images/books/professional-react.jpg', title: 'プロフェッショナルWebプログラミング React', author: '西畑 一馬・長谷川 広武・伊藤 祐策・扇田 心', languages: ['JavaScript', 'React'], fields: ['Webフロントエンド'], status: null, recommended: false, url: 'https://books.mdn.co.jp/books/3224303034/' },
 ]
 export const publications: Publication[] = [
+  {
+    id: '2026-09-23-git-trail-crates-io',
+    title: 'trailをcrates.ioに公開しました',
+    platform: 'Development log',
+    date: '2026-09-23',
+    body: [
+      'Gitのworktreeの開発履歴を再構成するCLI「trail」を、Rustのパッケージレジストリであるcrates.ioに公開しました。「trail」という名前はすでに使われていたので、クレート名は「git-trail」にしています。インストール後のコマンド名は trail のままです。',
+      'Rustが入っていれば、cargo install git-trail の1行でインストールできます。初めてのクレート公開でした。',
+      'これからは、AIと組み合わせて使える機能も追加していきたいと考えています。',
+    ],
+    url: 'https://crates.io/crates/git-trail',
+    linkLabel: 'crates.ioでgit-trailを見る',
+  },
   {
     id: '2026-09-23-development-works',
     title: 'Tadori、Wryte、trailを作りました',
