@@ -10,3 +10,14 @@ export type Project = {
   technologies: string[]
   published: boolean
 }
+
+export type Contribution = {
+  id: string
+  repository: string
+  pullRequestUrl: string
+  title: string
+  description: string
+  status: 'open' | 'merged' | 'closed'
+  date: string
+  languages: string[]
+}

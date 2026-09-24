@@ -22,7 +22,7 @@ test('entrance, hover handoff, fade out, menu and section links', async ({ page 
   expect(await page.evaluate(() => document.documentElement.scrollHeight <= innerHeight)).toBe(true)
   await page.screenshot({ path: test.info().outputPath('portfolio-home.png') })
   const rows = page.locator('.project-row')
-  await expect(rows).toHaveCount(4)
+  await expect(rows).toHaveCount(5)
   await rows.nth(0).hover()
   const before = await rows.nth(1).boundingBox()
   await expect(rows.nth(1)).toHaveCSS('opacity', '0.4')
@@ -63,7 +63,7 @@ test('entrance, hover handoff, fade out, menu and section links', async ({ page 
 test('mobile layout and reduced motion remain usable', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  for (const path of ['/', '/personal', '/development', '/daily-notes', '/books']) {
+  for (const path of ['/', '/personal', '/development', '/daily-notes', '/books', '/open-source']) {
     await page.goto(path)
     await expect(page.locator('.works-content')).toHaveCSS('opacity', '1')
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
@@ -71,11 +71,16 @@ test('mobile layout and reduced motion remain usable', async ({ page }) => {
     if (path === '/personal') await page.screenshot({ path: test.info().outputPath('portfolio-personal-mobile.png'), fullPage: true })
   }
   await page.goto('/')
-  for (const viewport of [{ width: 390, height: 844 }, { width: 375, height: 667 }, { width: 320, height: 568 }]) {
+  for (const viewport of [{ width: 390, height: 844 }, { width: 375, height: 667 }]) {
     await page.setViewportSize(viewport)
     await expect(page.locator('.project-row').last()).toBeInViewport({ ratio: 1 })
     expect(await page.evaluate(() => document.documentElement.scrollHeight <= innerHeight)).toBe(true)
   }
+  // Short phones keep the roomier spacing and may scroll a little to reach the last row.
+  await page.setViewportSize({ width: 320, height: 568 })
+  await page.locator('.project-row').last().scrollIntoViewIfNeeded()
+  await expect(page.locator('.project-row').last()).toBeInViewport({ ratio: 1 })
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
   await page.setViewportSize({ width: 390, height: 844 })
   await page.screenshot({ path: test.info().outputPath('portfolio-mobile.png') })
   await page.getByRole('button', { name: 'Open menu' }).click()
@@ -96,4 +101,20 @@ test('books combine subject and reading filters and reset correctly', async ({ p
   await page.getByRole('button', { name: '絞り込みを解除' }).click()
   await expect(page.locator('.book-card')).toHaveCount(8)
   await page.screenshot({ path: test.info().outputPath('portfolio-books.png'), fullPage: true })
+})
+
+test('open source lists contributions with pull request links and status badges', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: /Open Source —/ }).click()
+  await expect(page).toHaveURL(/\/open-source$/)
+  await expect(page.getByRole('heading', { name: 'Open Source', exact: true })).toBeVisible()
+  const items = page.locator('.contributions-list > li')
+  await expect(items).toHaveCount(2)
+  const acl = items.filter({ hasText: 'rust-lang-ja/ac-library-rs' })
+  await expect(acl.getByRole('link', { name: 'Output test binary to the temporary directory in test-expand.sh' })).toHaveAttribute('href', 'https://github.com/rust-lang-ja/ac-library-rs/pull/183')
+  await expect(acl.locator('.contribution-status')).toHaveText('Open')
+  await expect(acl.locator('.contribution-status')).toHaveAttribute('data-status', 'open')
+  await expect(acl.locator('time')).toHaveAttribute('dateTime', '2026-09-24')
+  await expect(items.filter({ hasText: 'rust-lang/rust-clippy' }).locator('.contribution-status')).toHaveText('Open')
+  await page.screenshot({ path: test.info().outputPath('portfolio-open-source.png'), fullPage: true })
 })

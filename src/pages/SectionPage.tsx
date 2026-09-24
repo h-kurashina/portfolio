@@ -5,6 +5,7 @@ import { Pointer } from '../components/Pointer'
 import { PersonalProfile } from '../components/PersonalProfile'
 import { Books } from '../components/Books'
 import { DailyNotes } from '../components/DailyNotes'
+import { Contributions } from '../components/Contributions'
 import { projects } from '../data/projects'
 import { site } from '../data/site'
 import { developmentWorks, fields, filterWorks, languages } from '../data/content'
@@ -43,6 +44,7 @@ export function SectionPage({ pathname }: { pathname: string }) {
         {project.id === 'books' && <Books />}
         {project.id === 'personal-portfolio' && <PersonalProfile />}
         {project.id === 'daily-notes' && <DailyNotes />}
+        {project.id === 'open-source' && <Contributions />}
       </section>
     </main>
     <footer className="site-footer"><small>©{new Date().getFullYear()} {site.name} All rights reserved</small></footer>

@@ -1,3 +1,5 @@
+import type { Contribution } from '../types/project'
+
 export type DevelopmentWork = {
   imageUrl?: string
   id: string
@@ -65,12 +67,13 @@ export const biography: Biography = {
     { period: '2026.02', title: 'エムキャピタル株式会社 入社' },
     { period: '2026.04', title: '事業責任者に就任' },
     { period: '2026.09', title: 'Rust Developer JP 参加', detail: 'プログラミング言語Rustのコミュニティ。' },
+    { period: '2026.09', title: 'rust-jp 参加' },
   ],
   languages: ['TypeScript', 'Python', 'Go', 'Rust'],
   frameworks: ['React'],
   security: 'Burp Suiteを用いたWebペネトレーションテストの経験があります。主な専門領域はソフトウェアエンジニアリングです。',
   interests: ['Rust / OSS', '低レイヤー', 'インフラ', '競技プログラミング'],
-  outlook: 'これからはRustのOSS活動に参加したいと考えています。低レイヤーやインフラの分野を学び、競技プログラミングにも挑戦したいです。開発者や学生起業家など、さまざまな人との交流も広げていきたいと思っています。',
+  outlook: 'Rust Developer JPやrust-jpに参加し、RustのOSSへのコントリビュートを始めました。低レイヤーやインフラの分野を学び、競技プログラミングにも挑戦したいです。開発者や学生起業家など、さまざまな人との交流も広げていきたいと思っています。',
   hobby: 'チェス',
   email: 'h.kurashina49@gmail.com',
   githubUrl: 'https://github.com/h-kurashina',
@@ -224,6 +227,28 @@ export const publications: Publication[] = [
     ],
     url: 'https://github.com/h-kurashina/portfolio',
     linkLabel: 'GitHubでソースコードを見る',
+  },
+]
+export const contributions: Contribution[] = [
+  {
+    id: 'ac-library-rs-183',
+    repository: 'rust-lang-ja/ac-library-rs',
+    pullRequestUrl: 'https://github.com/rust-lang-ja/ac-library-rs/pull/183',
+    title: 'Output test binary to the temporary directory in test-expand.sh',
+    description: '展開テスト用スクリプトが、実行するたびにコンパイル済みバイナリをリポジトリ直下に残していた問題（issue #134）を修正。rustc に出力先を指定し、一時ディレクトリに出力するようにした。',
+    status: 'open',
+    date: '2026-09-24',
+    languages: ['Shell', 'Rust'],
+  },
+  {
+    id: 'rust-clippy-17774',
+    repository: 'rust-lang/rust-clippy',
+    pullRequestUrl: 'https://github.com/rust-lang/rust-clippy/pull/17774',
+    title: 'Avoid cloning cached test item names in `is_in_test`',
+    description: 'Clippy内部のユーティリティで、キャッシュが当たるたびにVecを複製していた処理をArc<[Symbol]>の共有に置き換え、あわせて判定の順序を見直して不要な処理を省く性能改善。',
+    status: 'open',
+    date: '2026-09-23',
+    languages: ['Rust'],
   },
 ]
 export const languages = ['TypeScript', 'JavaScript', 'Python', 'Go', 'Rust']
