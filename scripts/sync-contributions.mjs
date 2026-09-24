@@ -27,7 +27,7 @@ async function fetchState(url) {
   return pull.merged_at ? 'merged' : pull.state
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const source = await readFile(CONTENT, 'utf8')
   const urls = [...source.matchAll(ENTRY)].map(match => match[2])
   const states = Object.fromEntries(await Promise.all(urls.map(async url => [url, await fetchState(url)])))
