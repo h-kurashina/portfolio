@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { filterWorks } from '../src/data/content'
+import { updateStatuses } from '../scripts/sync-contributions.mjs'
 
 test('language and field filters intersect and support multiple tags', () => {
   const works = [
@@ -9,6 +10,17 @@ test('language and field filters intersect and support multiple tags', () => {
   expect(filterWorks(works, 'Python', 'セキュリティ').map(work => work.id)).toEqual(['a'])
   expect(filterWorks(works, 'TypeScript', 'インフラ')).toEqual([])
   expect(filterWorks(works, '', '')).toHaveLength(2)
+})
+
+test('contribution sync updates only the status of the matching pull request', () => {
+  const source = `[
+  { pullRequestUrl: 'https://github.com/a/b/pull/1', title: 'One', status: 'open', date: '2026-09-24' },
+  { pullRequestUrl: 'https://github.com/c/d/pull/2', title: 'Two', status: 'open', date: '2026-09-23' },
+]`
+  const { updated, changes } = updateStatuses(source, { 'https://github.com/c/d/pull/2': 'merged', 'https://github.com/a/b/pull/1': 'open' })
+  expect(changes).toEqual([{ url: 'https://github.com/c/d/pull/2', from: 'open', to: 'merged' }])
+  expect(updated).toContain("pull/1', title: 'One', status: 'open'")
+  expect(updated).toContain("pull/2', title: 'Two', status: 'merged'")
 })
 
 test('entrance, hover handoff, fade out, menu and section links', async ({ page }) => {
