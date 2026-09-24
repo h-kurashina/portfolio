@@ -35,10 +35,10 @@ export function issueFor(pull) {
   }
 }
 
-async function github(path, init = {}) {
+async function github(path, init = {}, authenticated = true) {
   const response = await fetch(`https://api.github.com${path}`, {
     ...init,
-    headers: { accept: 'application/vnd.github+json', authorization: `Bearer ${process.env.GITHUB_TOKEN}`, ...init.headers },
+    headers: { accept: 'application/vnd.github+json', ...(authenticated && { authorization: `Bearer ${process.env.GITHUB_TOKEN}` }), ...init.headers },
   })
   if (!response.ok && response.status !== 422) throw new Error(`${path}: GitHub API responded ${response.status}`)
   return response.json()
@@ -47,7 +47,8 @@ async function github(path, init = {}) {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const source = await readFile('src/data/content.ts', 'utf8')
   const query = encodeURIComponent(`is:pr author:${AUTHOR} ${EXCLUDED_OWNERS.map(owner => `-user:${owner}`).join(' ')}`)
-  const { items } = await github(`/search/issues?q=${query}&per_page=100`)
+  // The Actions token only searches repositories it can access, so search public pull requests anonymously.
+  const { items } = await github(`/search/issues?q=${query}&per_page=100`, {}, false)
   const pulls = await Promise.all(items.map(async item => {
     const repository = item.repository_url.replace('https://api.github.com/repos/', '')
     const { language } = await github(`/repos/${repository}`)
