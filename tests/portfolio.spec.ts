@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { filterWorks } from '../src/data/content'
 import { updateStatuses } from '../scripts/sync-contributions.mjs'
+import { findNew, issueFor } from '../scripts/find-contributions.mjs'
 
 test('language and field filters intersect and support multiple tags', () => {
   const works = [
@@ -21,6 +22,18 @@ test('contribution sync updates only the status of the matching pull request', (
   expect(changes).toEqual([{ url: 'https://github.com/c/d/pull/2', from: 'open', to: 'merged' }])
   expect(updated).toContain("pull/1', title: 'One', status: 'open'")
   expect(updated).toContain("pull/2', title: 'Two', status: 'merged'")
+})
+
+test('contribution finder skips own, company, listed and announced pull requests', () => {
+  const pull = (repository: string, number: number) => ({ repository, number, url: `https://github.com/${repository}/pull/${number}`, title: "Fix a 'quoted' bug", language: 'Rust', status: 'open', date: '2026-09-25' })
+  const pulls = [pull('h-kurashina/git-trail', 1), pull('Beaulab-jp/beaulab', 2), pull('rust-lang/rust', 3), pull('tokio-rs/tokio', 4), pull('serde-rs/serde', 5)]
+  const source = "pullRequestUrl: 'https://github.com/rust-lang/rust/pull/3',"
+  const found = findNew(pulls, source, ['- https://github.com/tokio-rs/tokio/pull/4'])
+  expect(found.map(item => item.repository)).toEqual(['serde-rs/serde'])
+  const issue = issueFor(found[0])
+  expect(issue.title).toBe('Open Source に追加: serde-rs/serde#5')
+  expect(issue.body).toContain("title: 'Fix a \\'quoted\\' bug',")
+  expect(issue.body).toContain("languages: ['Rust'],")
 })
 
 test('entrance, hover handoff, fade out, menu and section links', async ({ page }) => {

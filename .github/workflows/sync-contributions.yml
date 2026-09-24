@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write
 
 jobs:
   sync:
@@ -18,6 +19,10 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/sync-contributions.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Open an issue for each new contribution
+        run: node scripts/find-contributions.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit and deploy when a status changed
