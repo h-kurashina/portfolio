@@ -134,7 +134,7 @@ test('open source lists contributions with pull request links and status badges'
   await expect(page).toHaveURL(/\/open-source$/)
   await expect(page.getByRole('heading', { name: 'Open Source', exact: true })).toBeVisible()
   const items = page.locator('.contributions-list > li')
-  await expect(items).toHaveCount(2)
+  await expect(items).toHaveCount(4)
   const acl = items.filter({ hasText: 'rust-lang-ja/ac-library-rs' })
   await expect(acl.getByRole('link', { name: 'Output test binary to the temporary directory in test-expand.sh' })).toHaveAttribute('href', 'https://github.com/rust-lang-ja/ac-library-rs/pull/183')
   await expect(acl.locator('.contribution-status')).toHaveText('Open')

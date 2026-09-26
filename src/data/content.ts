@@ -113,6 +113,15 @@ export const developmentWorks: DevelopmentWork[] = [
     imageUrl: '/images/projects/wryte-icon.svg',
   },
   {
+    id: 'kura',
+    title: 'kura-rs',
+    description: 'コピーして使う、証拠つきのRust部品集。AIのデータ処理（チャンク分割・テキスト正規化・重複除去・トークン数の計測）とセキュリティ（ログ解析・パターン照合・ハッシュ・バイナリ解析）向けの小さな部品を、shadcn/uiのように自分のプロジェクトへソースごとコピーして使う形を目指しています。部品ごとに、参照実装との差分テストとベンチマークを付ける設計です。CLI・スキーマ・レジストリ検証・axumのAPIサーバーをRustのワークスペースで作り、ドキュメントサイトはNext.jsで8言語に対応しました。現在は開発中で、登録している8つの部品はサンプルデータです。MITとApache 2.0のデュアルライセンスで公開しています。',
+    languages: ['Rust', 'TypeScript'],
+    fields: ['ライブラリ', 'ツール・自動化'],
+    imageUrl: '/images/projects/kura-icon.svg',
+    url: 'https://kura-tau.vercel.app',
+  },
+  {
     id: 'sorted-multiset-rs',
     title: 'SortedMultiset for Rust',
     description: '競技プログラミング向けの、重複を許す順序付き集合。tatyam氏のPython版SortedSetと同じ平方分割で実装し、同じ感覚で使えるAPIにしています。標準ライブラリのみ・unsafeなしの1ファイルで、提出コードにそのまま貼り付けて使えます。参照実装との差分テストで検証し、同じ操作列でPython版の約10〜13倍の速さを確認しました。CC0で公開しています。',
@@ -152,6 +161,31 @@ export const books: Book[] = [
   { id: 'professional-react', imageUrl: '/images/books/professional-react.jpg', title: 'プロフェッショナルWebプログラミング React', author: '西畑 一馬・長谷川 広武・伊藤 祐策・扇田 心', languages: ['JavaScript', 'React'], fields: ['Webフロントエンド'], status: null, recommended: false, url: 'https://books.mdn.co.jp/books/3224303034/' },
 ]
 export const publications: Publication[] = [
+  {
+    id: '2026-09-26-kura',
+    title: 'Rustの部品集「kura-rs」を作り始めました',
+    platform: 'Development log',
+    date: '2026-09-26',
+    body: [
+      'AIのデータ処理とセキュリティ向けの小さなRust部品を集めた「kura-rs」を作り始めました。shadcn/uiのように、ライブラリとして読み込むのではなく、部品のソースを自分のプロジェクトへコピーして使う形を目指しています。キャッチコピーは「Copy the code, keep the proof.」で、部品ごとに参照実装との差分テストとベンチマークを付けて、正しさと速さの証拠も一緒に渡す設計です。',
+      '中身は、部品の形を決めるスキーマ、レジストリを検証するCLI、axumのAPIサーバーをRustのワークスペースで作り、ドキュメントサイトはNext.jsで8言語に対応させてVercelで公開しました。',
+      'まだ開発中で、登録している8つの部品はサンプルデータです。これから実際の部品と計測結果をそろえていきます。',
+    ],
+    url: 'https://kura-tau.vercel.app',
+    linkLabel: 'kura-rsのサイトを見る',
+  },
+  {
+    id: '2026-09-26-rust-compiler-prs',
+    title: 'Rustコンパイラ本体にPRを出しました',
+    platform: 'Open Source',
+    date: '2026-09-26',
+    body: [
+      'rust-lang/rust に、初めてのPRを2つ出しました。concat! で組み立てたフォーマット文字列に対して、コンパイラが間違った位置をもとに修正案を出し、クラッシュ（ICE）したり無関係なコードを書き換える提案をしたりする不具合の修正です。',
+      '1つ目の #163368 で issue #156101 を直し、その作業中に同じ種類の不具合をもう1つ見つけたので、#163371 として別に出しました。どちらもレビュー待ちです。ポートフォリオのOpen Sourceにも追加しています。',
+    ],
+    url: 'https://github.com/rust-lang/rust/pull/163368',
+    linkLabel: 'GitHubでPRを見る',
+  },
   {
     id: '2026-09-23-sorted-multiset-rs',
     title: '競プロ向けのRust版SortedMultisetを公開しました',
@@ -230,6 +264,26 @@ export const publications: Publication[] = [
   },
 ]
 export const contributions: Contribution[] = [
+  {
+    id: 'rust-163371',
+    repository: 'rust-lang/rust',
+    pullRequestUrl: 'https://github.com/rust-lang/rust/pull/163371',
+    title: "Don't suggest replacing foreign format specifiers in `concat!` output",
+    description: '#163368 の作業中に見つけた同じ種類の不具合を修正。concat! で組み立てたフォーマット文字列に printf 形式の指定子（%d など）があると、コンパイラが無関係なソースを書き換える修正案を出していた。修正案を出すのをやめ、「`%d` は `{}` と書く」という説明の注記に置き換えた。',
+    status: 'open',
+    date: '2026-09-26',
+    languages: ['Rust'],
+  },
+  {
+    id: 'rust-163368',
+    repository: 'rust-lang/rust',
+    pullRequestUrl: 'https://github.com/rust-lang/rust/pull/163368',
+    title: "Don't build format string suggestions from `concat!` offsets",
+    description: 'concat! で組み立てたフォーマット文字列に対して、コンパイラが展開後の文字列の位置をもとに修正案を作っていた問題（issue #156101）を修正。マルチバイト文字の途中を指してコンパイラ自体がクラッシュ（ICE）したり、無関係なコードを引数として提案したりしていた。ソースに直接書かれた文字列リテラルのときだけ修正案を出すようにした。',
+    status: 'open',
+    date: '2026-09-26',
+    languages: ['Rust'],
+  },
   {
     id: 'ac-library-rs-183',
     repository: 'rust-lang-ja/ac-library-rs',
