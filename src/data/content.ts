@@ -38,7 +38,7 @@ export type Biography = {
   role: string
   introduction: string
   motivation: string
-  company: { name: string; url: string }
+  company: { name: string; url?: string }
   education: string
   product: string
   history: { period: string; title: string; detail?: string }[]
@@ -48,7 +48,7 @@ export type Biography = {
   interests: string[]
   outlook: string
   hobby: string
-  email: string
+  email?: string
   photo: { src: string; alt: string; width: number; height: number }
   githubUrl?: string
   xUrl?: string
@@ -58,7 +58,7 @@ export const biography: Biography = {
   role: 'Software Engineer / Business Lead',
   introduction: 'スタートアップで、Beaulabの開発に取り組んでいます。ソフトウェアエンジニアリングを軸に、事業責任者も務めています。',
   motivation: 'Beaulabを事業としてつくることになったのが、開発を始めたきっかけです。必要な技術を学ぶうちに、プログラミングそのものの面白さを感じるようになりました。',
-  company: { name: 'スタートアップ', url: '' },
+  company: { name: 'スタートアップ' },
   education: '中央大学',
   product: 'Beaulab',
   history: [
@@ -74,7 +74,6 @@ export const biography: Biography = {
   interests: ['Rust / OSS', '低レイヤー', 'インフラ', '競技プログラミング'],
   outlook: 'Rust Developer JPやrust-jpに参加し、RustのOSSへのコントリビュートを始めました。低レイヤーやインフラの分野を学び、競技プログラミングにも挑戦したいです。開発者や学生起業家など、さまざまな人との交流も広げていきたいと思っています。',
   hobby: 'チェス',
-  email: '',
   githubUrl: 'https://github.com/h-kurashina',
   xUrl: 'https://x.com/hkurashina49',
   photo: {

@@ -13,7 +13,7 @@ export function PersonalProfile() {
           <h2 id="profile-name" className="profile-name">{site.name}</h2>
           <p className="profile-introduction">{biography.introduction}</p>
         <dl className="profile-facts">
-          <div><dt>Company</dt><dd><a href={biography.company.url} target="_blank" rel="noreferrer">{biography.company.name}<span aria-hidden="true"> ↗</span></a></dd></div>
+          <div><dt>Company</dt><dd>{biography.company.url ? <a href={biography.company.url} target="_blank" rel="noreferrer">{biography.company.name}<span aria-hidden="true"> ↗</span></a> : biography.company.name}</dd></div>
           <div><dt>Building</dt><dd>{biography.product}</dd></div>
           <div><dt>Education</dt><dd>{biography.education}</dd></div>
           <div><dt>Outside of work</dt><dd>{biography.hobby}</dd></div>
@@ -53,7 +53,7 @@ export function PersonalProfile() {
       <section className="profile-section" aria-labelledby="contact-title">
         <div className="profile-section-heading"><h2 id="contact-title">Contact</h2><p>連絡先・リンク</p></div>
         <div className="profile-contact">
-          <a href={`mailto:${biography.email}`}><span>Email</span><span>{biography.email} <span aria-hidden="true">↗</span></span></a>
+          {biography.email && <a href={`mailto:${biography.email}`}><span>Email</span><span>{biography.email} <span aria-hidden="true">↗</span></span></a>}
           {biography.githubUrl && <a href={biography.githubUrl} target="_blank" rel="noreferrer"><span className="contact-platform"><img src={sitePath("/images/technologies/github.svg")} alt="" width="18" height="18" />GitHub</span><span>{biography.githubUrl.replace('https://github.com/', '@')} <span aria-hidden="true">↗</span></span></a>}
           {biography.xUrl && <a href={biography.xUrl} target="_blank" rel="noreferrer"><span className="contact-platform"><img src={sitePath("/images/technologies/x.svg")} alt="" width="18" height="18" />X</span><span>{biography.xUrl.replace('https://x.com/', '@')} <span aria-hidden="true">↗</span></span></a>}
         </div>
