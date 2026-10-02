@@ -278,7 +278,7 @@ export const contributions: Contribution[] = [
     pullRequestUrl: 'https://github.com/rust-lang/rust/pull/163368',
     title: "Don't build format string suggestions from `concat!` offsets",
     description: 'concat! で組み立てたフォーマット文字列に対して、コンパイラが展開後の文字列の位置をもとに修正案を作っていた問題（issue #156101）を修正。マルチバイト文字の途中を指してコンパイラ自体がクラッシュ（ICE）したり、無関係なコードを引数として提案したりしていた。ソースに直接書かれた文字列リテラルのときだけ修正案を出すようにした。',
-    status: 'open',
+    status: 'merged',
     date: '2026-09-26',
     languages: ['Rust'],
   },
