@@ -4,7 +4,7 @@ import { SiteMenu } from '../components/SiteMenu'
 import { Pointer } from '../components/Pointer'
 import { PersonalProfile } from '../components/PersonalProfile'
 import { Books } from '../components/Books'
-import { DailyNotes } from '../components/DailyNotes'
+import { CaseStudies } from '../components/CaseStudies'
 import { Contributions } from '../components/Contributions'
 import { projects } from '../data/projects'
 import { site } from '../data/site'
@@ -43,7 +43,7 @@ export function SectionPage({ pathname }: { pathname: string }) {
         {project.id === 'development' && <Development />}
         {project.id === 'books' && <Books />}
         {project.id === 'personal-portfolio' && <PersonalProfile />}
-        {project.id === 'daily-notes' && <DailyNotes />}
+        {project.id === 'case-studies' && <CaseStudies />}
         {project.id === 'open-source' && <Contributions />}
       </section>
     </main>

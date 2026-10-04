@@ -14,10 +14,10 @@ export const projects: Project[] = [
     imageUrl: '/images/icons/development.svg', projectUrl: '/development', technologies: ['React', 'TypeScript'], published: true,
   },
   {
-    id: 'daily-notes', number: '03', title: 'Daily Notes',
-    category: 'Writing & Sharing',
-    description: '記事や投稿など、自分の発信活動について。',
-    imageUrl: '/images/icons/daily-notes.svg', projectUrl: '/daily-notes', technologies: [], published: true,
+    id: 'case-studies', number: '03', title: 'Case Studies',
+    category: 'Security Research',
+    description: '許可された環境で脆弱性を探し、直すまでの記録。',
+    imageUrl: '/images/icons/case-studies.svg', projectUrl: '/case-studies', technologies: [], published: true,
   },
   {
     id: 'books', number: '04', title: 'Books',

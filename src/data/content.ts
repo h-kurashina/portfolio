@@ -24,14 +24,19 @@ export type Book = {
   url?: string
 }
 
-export type Publication = {
+export type CaseStudy = {
   id: string
   title: string
-  platform: string
+  target: string
+  severity: 'critical' | 'high' | 'medium' | 'low'
   date: string
-  body?: string[]
+  tags: string[]
+  situation: string
+  approach: string
+  finding: string
+  fix: string
+  lesson: string
   url?: string
-  linkLabel?: string
 }
 
 export type Biography = {
@@ -158,109 +163,8 @@ export const books: Book[] = [
   { id: 'ruby-cherry', imageUrl: '/images/books/ruby-cherry.jpg', title: 'プロを目指す人のためのRuby入門', author: '伊藤 淳一', nickname: 'チェリー本', languages: ['Ruby'], fields: ['言語の基礎'], status: null, recommended: false, url: 'https://gihyo.jp/book/2017/978-4-7741-9397-7' },
   { id: 'professional-react', imageUrl: '/images/books/professional-react.jpg', title: 'プロフェッショナルWebプログラミング React', author: '西畑 一馬・長谷川 広武・伊藤 祐策・扇田 心', languages: ['JavaScript', 'React'], fields: ['Webフロントエンド'], status: null, recommended: false, url: 'https://books.mdn.co.jp/books/3224303034/' },
 ]
-export const publications: Publication[] = [
-  {
-    id: '2026-09-26-kura',
-    title: 'Rustの部品集「kura-rs」を作り始めました',
-    platform: 'Development log',
-    date: '2026-09-26',
-    body: [
-      'AIのデータ処理とセキュリティ向けの小さなRust部品を集めた「kura-rs」を作り始めました。shadcn/uiのように、ライブラリとして読み込むのではなく、部品のソースを自分のプロジェクトへコピーして使う形を目指しています。キャッチコピーは「Copy the code, keep the proof.」で、部品ごとに参照実装との差分テストとベンチマークを付けて、正しさと速さの証拠も一緒に渡す設計です。',
-      '中身は、部品の形を決めるスキーマ、レジストリを検証するCLI、axumのAPIサーバーをRustのワークスペースで作り、ドキュメントサイトはNext.jsで8言語に対応させてVercelで公開しました。',
-      'まだ開発中で、登録している8つの部品はサンプルデータです。これから実際の部品と計測結果をそろえていきます。',
-    ],
-    url: 'https://kura-tau.vercel.app',
-    linkLabel: 'kura-rsのサイトを見る',
-  },
-  {
-    id: '2026-09-26-rust-compiler-prs',
-    title: 'Rustコンパイラ本体にPRを出しました',
-    platform: 'Open Source',
-    date: '2026-09-26',
-    body: [
-      'rust-lang/rust に、初めてのPRを2つ出しました。concat! で組み立てたフォーマット文字列に対して、コンパイラが間違った位置をもとに修正案を出し、クラッシュ（ICE）したり無関係なコードを書き換える提案をしたりする不具合の修正です。',
-      '1つ目の #163368 で issue #156101 を直し、その作業中に同じ種類の不具合をもう1つ見つけたので、#163371 として別に出しました。どちらもレビュー待ちです。ポートフォリオのOpen Sourceにも追加しています。',
-    ],
-    url: 'https://github.com/rust-lang/rust/pull/163368',
-    linkLabel: 'GitHubでPRを見る',
-  },
-  {
-    id: '2026-09-23-sorted-multiset-rs',
-    title: '競プロ向けのRust版SortedMultisetを公開しました',
-    platform: 'Development log',
-    date: '2026-09-23',
-    body: [
-      '競技プログラミングで使える、重複を許す順序付き集合「SortedMultiset」のRust版を作り、GitHubに公開しました。tatyam氏のPython版SortedSetと同じ平方分割のしくみで、insert・remove・k番目の取得・x以上の最小値などを、Python版と同じ感覚で使えます。',
-      '標準ライブラリのみ・unsafeなしの1ファイルで、提出コードに貼り付けて使う前提です。AtCoderのジャッジ環境のrustcでコンパイルできることも確認しました。',
-      '正しさは、ソート済みVecによる参照実装と結果を突き合わせる差分テストで確かめています。ベンチマークでは、同じ操作列でPython版の約10〜13倍の速さでした（手元のApple Silicon環境での計測）。ライセンスはCC0です。',
-    ],
-    url: 'https://github.com/h-kurashina/sorted-multiset-rs',
-    linkLabel: 'GitHubでSortedMultisetを見る',
-  },
-  {
-    id: '2026-09-23-git-trail-crates-io',
-    title: 'trailをcrates.ioに公開しました',
-    platform: 'Development log',
-    date: '2026-09-23',
-    body: [
-      'Gitのworktreeの開発履歴を再構成するCLI「trail」を、Rustのパッケージレジストリであるcrates.ioに公開しました。「trail」という名前はすでに使われていたので、クレート名は「git-trail」にしています。インストール後のコマンド名は trail のままです。',
-      'Rustが入っていれば、cargo install git-trail の1行でインストールできます。初めてのクレート公開でした。',
-      'これからは、AIと組み合わせて使える機能も追加していきたいと考えています。',
-    ],
-    url: 'https://crates.io/crates/git-trail',
-    linkLabel: 'crates.ioでgit-trailを見る',
-  },
-  {
-    id: '2026-09-23-development-works',
-    title: 'Tadori、Wryte、trailを作りました',
-    platform: 'Development log',
-    date: '2026-09-23',
-    body: [
-      'sta.のあとも、いくつか開発を進めています。ポートフォリオのDevelopmentにも追加しました。',
-      'Tadoriは、技術書・ビジネス書を「順番」と「できるようになること」でつなぐ学習ロードマップのモバイルアプリです。Expo（React Native）とExpo Routerで、MVPを開発しています。',
-      'Wryteは、技術知識を書く・確かめる・整える・公開するための技術執筆・知識共有サービスです。フロントエンドはReactとVite、バックエンドはPython（FastAPI）とPostgreSQLで作っています。',
-      'trailは、Gitのworktreeの開発履歴を時系列のチェックポイントとして再構成する、ローカル完結のCLIです。Rustで実装し、MITライセンスでGitHubに公開しました。',
-    ],
-    url: 'https://github.com/h-kurashina/git-trail',
-    linkLabel: 'GitHubでtrailを見る',
-  },
-  {
-    id: '2026-09-22-rust-developer-jp',
-    title: 'Rust Developer JPに参加することになりました',
-    platform: 'Community',
-    date: '2026-09-22',
-    body: [
-      'プログラミング言語Rustのコミュニティ、Rust Developer JPに参加することになりました。',
-      'RustのOSS活動に関わりたいと考えていたので、その一歩になります。最近はRustでCLIツール「trail」も作ったところなので、コミュニティの中でさらにRustを学んでいきたいです。',
-    ],
-  },
-  {
-    id: '2026-09-21-sta',
-    title: '学生向けドキュメント整理アプリ「sta.」を作りました',
-    platform: 'Development log',
-    date: '2026-09-21',
-    body: [
-      '科目を選んでから撮る、学生向けのiOSドキュメント整理アプリ「sta.」を作りました。スキャンした資料を科目ごとに保存し、閲覧中も科目を切り替えられます。SwiftUIとVisionKitを使い、データは端末内に保存します。',
-      '制作の目安は約66分でした。プロジェクトフォルダの作成から、アプリとブランド素材を追加したコミットまでの記録上の経過時間で、企画や休憩を含む実作業時間を計測したものではありません。',
-      'ロゴも用意し、ソースコードはMITライセンスでGitHubに公開しました。ポートフォリオのDevelopmentからも見られます。',
-    ],
-    url: 'https://github.com/h-kurashina/sta.',
-    linkLabel: 'GitHubでsta.を見る',
-  },
-  {
-    id: '2026-09-20-portfolio',
-    title: 'ポートフォリオを作成しました',
-    platform: 'Development log',
-    date: '2026-09-20',
-    body: [
-      'ReactとTypeScriptで、自分のポートフォリオを作成しました。プロフィール、開発した作品、発信活動、読んだ本をまとめる場所にしていきます。',
-      '今日はホームとPersonalページを中心に制作。写真や経歴、使用技術を掲載し、各ページのテーマカラーやアイコン、hover時のアニメーションも整えました。スマートフォンでの表示確認と、Playwrightによるテストも追加しています。',
-      'ソースコードはGitHubでMITライセンスとして公開しました。作品や記事、本の記録は、これから少しずつ追加していく予定です。',
-    ],
-    url: 'https://github.com/h-kurashina/portfolio',
-    linkLabel: 'GitHubでソースコードを見る',
-  },
-]
+// 公開してよい題材（自作の脆弱なアプリ・学習用ラボ・公開済みの報告など）だけを載せる。仕事の診断結果は載せない。
+export const caseStudies: CaseStudy[] = []
 export const contributions: Contribution[] = [
   {
     id: 'rust-163371',
