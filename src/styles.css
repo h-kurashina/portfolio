@@ -227,6 +227,7 @@ h1, h2, p, ul { margin: 0; padding: 0; }
 
 /* Personal: a readable profile with quiet section labels and a chronological list. */
 .detail-page[data-preview="personal-portfolio"] .works-content { max-width: 1120px; }
+.detail-page[data-preview="case-study"] .works-content { max-width: 820px; }
 .personal-profile { font-family: system-ui, sans-serif; font-size: 14px; line-height: 2; }
 .profile-summary { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); align-items: start; gap: 64px; padding-block: 40px 56px; border-top: 1px solid var(--row-border); }
 .profile-photo { display: block; width: 100%; height: auto; border-radius: 6px; }
@@ -368,11 +369,11 @@ h1, h2, p, ul { margin: 0; padding: 0; }
 
 /* Case Study: clean editorial cards, consistent with the rest of the site. */
 .case-list, .case-detail, .case-disclaimer, .case-meta { font-family: system-ui, sans-serif; }
-.case-disclaimer { max-width: 760px; margin-bottom: 40px; padding: 14px 18px; border-left: 2px solid var(--page-text); border-radius: 0 8px 8px 0; background: #ffffff55; color: var(--muted-text); font-size: 12px; line-height: 1.9; }
+.case-disclaimer { margin-bottom: 40px; padding: 14px 18px; border-left: 2px solid var(--page-text); border-radius: 0 8px 8px 0; background: #ffffff55; color: var(--muted-text); font-size: 12px; line-height: 1.9; }
 .case-list { list-style: none; padding: 0; }
 .case-list li { padding-block: 28px; border-top: 1px solid var(--row-border); }
 .case-list li:last-child { border-bottom: 1px solid var(--row-border); }
-.case-list article { position: relative; max-width: 760px; }
+.case-list article { position: relative; }
 .case-list h2 { margin-block: 14px 10px; font-family: system-ui, sans-serif; font-size: clamp(18px, 2.6vw, 24px); font-weight: 600; line-height: 1.55; overflow-wrap: anywhere; }
 .case-list h2 a { text-decoration: none; }
 .case-list h2 a::after { content: ''; position: absolute; inset: -28px 0; }
@@ -389,7 +390,6 @@ h1, h2, p, ul { margin: 0; padding: 0; }
 .case-tag { padding: 1px 9px; border-radius: 20px; background: #ffffff66; }
 .case-summary { margin-top: 14px; color: var(--muted-text); line-height: 2; }
 .case-link { display: inline-block; margin-top: 16px; font-size: 13px; }
-.case-detail { max-width: 760px; }
 .case-detail h1 { margin-block: 16px 12px; font-family: system-ui, sans-serif; font-size: clamp(24px, 4vw, 40px); font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
 .case-detail .case-steps { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--row-border); }
 .case-steps { display: grid; gap: 24px; margin: 28px 0 0; }
