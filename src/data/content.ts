@@ -41,6 +41,7 @@ export type CaseStudy = {
 
 export type Biography = {
   role: string
+  openSource: string
   introduction: string
   motivation: string
   company: { name: string; url?: string }
@@ -60,7 +61,8 @@ export type Biography = {
 }
 
 export const biography: Biography = {
-  role: 'Software Engineer / Business Lead',
+  role: 'Software Engineer / Vulnerability Researcher / Business Lead',
+  openSource: 'Contributor to the Rust compiler (rustc)',
   introduction: 'スタートアップで、Beaulabの開発に取り組んでいます。ソフトウェアエンジニアリングを軸に、事業責任者も務めています。',
   motivation: 'Beaulabを事業としてつくることになったのが、開発を始めたきっかけです。必要な技術を学ぶうちに、プログラミングそのものの面白さを感じるようになりました。',
   company: { name: 'スタートアップ' },
@@ -72,10 +74,11 @@ export const biography: Biography = {
     { period: '2026.04', title: '事業責任者に就任' },
     { period: '2026.09', title: 'Rust Developer JP 参加', detail: 'プログラミング言語Rustのコミュニティ。' },
     { period: '2026.09', title: 'rust-jp 参加' },
+    { period: '2026.10', title: 'Contributor to the Rust compiler (rustc)', detail: 'Rustのコンパイラ（rust-lang/rust）に送った修正がマージされました。' },
   ],
   languages: ['TypeScript', 'Python', 'Go', 'Rust'],
   frameworks: ['React'],
-  security: '日本ハッカー協会の認定ハッカーです。Hack The Boxなどは趣味で続けていて、最近はAIとWebアプリの脆弱性診断に力を入れています。Burp Suiteを用いたWebペネトレーションテストの経験があります。',
+  security: '日本ハッカー協会の認定ハッカーです。Hack The Boxなどは趣味で続けていて、最近はAIとWebアプリの脆弱性診断に力を入れています。Burp Suiteを用いたWebペネトレーションテストの経験があります。脆弱性リサーチャーとしてOSSの脆弱性調査にも取り組んでいて、見つけた脆弱性を開発元に報告し、修正の公開に向けて調整を進めています。',
   interests: ['AI・Webの脆弱性診断', 'Rust / OSS', '低レイヤー', 'インフラ', '競技プログラミング'],
   outlook: 'AIとWebアプリの脆弱性診断の経験を積み、見つけた問題を開発側で直すところまで関わっていきたいです。また、Rust Developer JPやrust-jpに参加し、RustのOSSへのコントリビュートを始めました。低レイヤーやインフラの分野を学び、競技プログラミングにも挑戦したいです。開発者や学生起業家など、さまざまな人との交流も広げていきたいと思っています。',
   hobby: 'チェス / Hack The Box',

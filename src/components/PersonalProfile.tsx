@@ -15,6 +15,7 @@ export function PersonalProfile() {
         <dl className="profile-facts">
           <div><dt>Company</dt><dd>{biography.company.url ? <a href={biography.company.url} target="_blank" rel="noreferrer">{biography.company.name}<span aria-hidden="true"> ↗</span></a> : biography.company.name}</dd></div>
           <div><dt>Building</dt><dd>{biography.product}</dd></div>
+          <div><dt>Open Source</dt><dd>{biography.openSource}</dd></div>
           <div><dt>Education</dt><dd>{biography.education}</dd></div>
           <div><dt>Outside of work</dt><dd>{biography.hobby}</dd></div>
         </dl>
@@ -41,7 +42,7 @@ export function PersonalProfile() {
         <div className="profile-skills">
           <div><h3>Languages</h3><TechnologyList names={biography.languages} /></div>
           <div><h3>Frameworks</h3><TechnologyList names={biography.frameworks} /></div>
-          <div className="security-experience"><h3><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6l8-3Z" /><path d="m8 12 3 3 5-6" /></svg>Security / Burp Suite</h3><p>{biography.security}</p></div>
+          <div className="security-experience"><h3><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6l8-3Z" /><path d="m8 12 3 3 5-6" /></svg>Vulnerability Research / Burp Suite</h3><p>{biography.security}</p></div>
         </div>
       </section>
 
