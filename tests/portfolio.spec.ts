@@ -88,7 +88,7 @@ test('entrance, hover handoff, fade out, menu and section links', async ({ page 
 test('mobile layout and reduced motion remain usable', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  for (const path of ['/', '/personal', '/development', '/case-studies', '/books', '/open-source']) {
+  for (const path of ['/', '/personal', '/development', '/case-study', '/books', '/open-source']) {
     await page.goto(path)
     await expect(page.locator('.works-content')).toHaveCSS('opacity', '1')
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)

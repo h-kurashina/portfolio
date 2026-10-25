@@ -4,7 +4,7 @@ import { SiteMenu } from '../components/SiteMenu'
 import { Pointer } from '../components/Pointer'
 import { PersonalProfile } from '../components/PersonalProfile'
 import { Books } from '../components/Books'
-import { CaseStudies } from '../components/CaseStudies'
+import { CaseStudies, CaseStudyDetail, findCaseStudy } from '../components/CaseStudies'
 import { Contributions } from '../components/Contributions'
 import { projects } from '../data/projects'
 import { site } from '../data/site'
@@ -31,20 +31,26 @@ function Development() {
 }
 
 export function SectionPage({ pathname }: { pathname: string }) {
-  const project = projects.find(item => item.projectUrl === pathname)
+  const caseStudy = findCaseStudy(pathname)
+  const project = projects.find(item => item.projectUrl === (caseStudy ? '/case-study' : pathname))
   if (!project) return <main className="not-found"><h1>Page not found</h1><a href={sitePath()}>Back to index</a></main>
   return <div className="projects-page has-entered detail-page" data-preview={project.id}>
     <SiteMenu />
     <main className="works-container">
       <section className="works-content">
-        <a className="back-link" href={sitePath()}>← Home</a>
-        <div className="section-title"><img src={sitePath(project.imageUrl)} alt="" width="64" height="64" /><h1>{project.title}</h1></div>
-        <p className="section-description">{project.description}</p>
-        {project.id === 'development' && <Development />}
-        {project.id === 'books' && <Books />}
-        {project.id === 'personal-portfolio' && <PersonalProfile />}
-        {project.id === 'case-studies' && <CaseStudies />}
-        {project.id === 'open-source' && <Contributions />}
+        {caseStudy ? <>
+          <a className="back-link" href={sitePath(project.projectUrl)}>← {project.title}</a>
+          <CaseStudyDetail study={caseStudy} />
+        </> : <>
+          <a className="back-link" href={sitePath()}>← Home</a>
+          <div className="section-title"><img src={sitePath(project.imageUrl)} alt="" width="64" height="64" /><h1>{project.title}</h1></div>
+          <p className="section-description">{project.description}</p>
+          {project.id === 'development' && <Development />}
+          {project.id === 'books' && <Books />}
+          {project.id === 'personal-portfolio' && <PersonalProfile />}
+          {project.id === 'case-study' && <CaseStudies />}
+          {project.id === 'open-source' && <Contributions />}
+        </>}
       </section>
     </main>
     <footer className="site-footer"><small>©{new Date().getFullYear()} {site.name} All rights reserved</small></footer>

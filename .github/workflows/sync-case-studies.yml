@@ -1,0 +1,34 @@
+name: Sync case study disclosure status
+
+on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Promote case studies whose advisory is now public
+        run: node scripts/sync-case-studies.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and deploy when a case study was published
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git diff --quiet && exit 0
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -am 'Publish case study after advisory disclosure'
+          git push
+          # Pushes made with GITHUB_TOKEN do not trigger other workflows, so start the deploy explicitly.
+          gh workflow run pages.yml --ref main

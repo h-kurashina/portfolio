@@ -1,4 +1,5 @@
 import type { Contribution } from '../types/project'
+import caseStudiesData from './case-studies.json' with { type: 'json' }
 
 export type DevelopmentWork = {
   imageUrl?: string
@@ -31,11 +32,18 @@ export type CaseStudy = {
   severity: 'critical' | 'high' | 'medium' | 'low'
   date: string
   tags: string[]
-  situation: string
-  approach: string
-  finding: string
-  fix: string
-  lesson: string
+  // 'embargoed' = reported but not yet public; the 5-step details are withheld
+  // and never stored in this repo until the advisory is public. The daily
+  // sync-case-studies workflow flips it to 'published' and fills the details
+  // from the now-public advisory. See scripts/sync-case-studies.mjs.
+  status: 'embargoed' | 'published'
+  advisory?: string // GitHub advisory id (GHSA-…) to poll
+  cve?: string // CVE id to poll via OSV (e.g. for findings reported by email)
+  situation?: string
+  approach?: string
+  finding?: string
+  fix?: string
+  lesson?: string
   url?: string
 }
 
@@ -167,7 +175,9 @@ export const books: Book[] = [
   { id: 'professional-react', imageUrl: '/images/books/professional-react.jpg', title: 'プロフェッショナルWebプログラミング React', author: '西畑 一馬・長谷川 広武・伊藤 祐策・扇田 心', languages: ['JavaScript', 'React'], fields: ['Webフロントエンド'], status: null, recommended: false, url: 'https://books.mdn.co.jp/books/3224303034/' },
 ]
 // 公開してよい題材（自作の脆弱なアプリ・学習用ラボ・公開済みの報告など）だけを載せる。仕事の診断結果は載せない。
-export const caseStudies: CaseStudy[] = []
+// データは src/data/case-studies.json（機械で更新可能）。開示前のエントリは status: 'embargoed'
+// で詳細を持たず、sync-case-studies ワークフローが公開後に 'published' へ切り替える。
+export const caseStudies: CaseStudy[] = caseStudiesData as CaseStudy[]
 export const contributions: Contribution[] = [
   {
     id: 'rust-163371',
