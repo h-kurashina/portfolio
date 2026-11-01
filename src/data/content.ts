@@ -185,7 +185,7 @@ export const contributions: Contribution[] = [
     pullRequestUrl: 'https://github.com/rust-lang/rust/pull/163371',
     title: "Don't suggest replacing foreign format specifiers in `concat!` output",
     description: '#163368 の作業中に見つけた同じ種類の不具合を修正。concat! で組み立てたフォーマット文字列に printf 形式の指定子（%d など）があると、コンパイラが無関係なソースを書き換える修正案を出していた。修正案を出すのをやめ、「`%d` は `{}` と書く」という説明の注記に置き換えた。',
-    status: 'open',
+    status: 'merged',
     date: '2026-09-26',
     languages: ['Rust'],
   },
